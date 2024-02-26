@@ -16,13 +16,14 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware('guest')->group(function () {
 Route::get("/login", [AuthController::class ,'login'])->name('login');
 Route::get("/register", [AuthController::class ,'register'])->name('register');
 Route::POST("/login", [AuthController::class ,'attempt'])->name('attempt');
 Route::POST("/register", [AuthController::class ,'store'])->name('store_acc');
+});
 
-
+Route::middleware('auth')->group(function () {
 Route::get("/logout", [AuthController::class ,'logout'])->name('logout');
 Route::get('/',[PostController::class ,'index'])->name('home');
 Route::get('/search',[SearchController::class ,'index'])->name('search');
@@ -35,7 +36,7 @@ Route::POST('/edit/{id}', [PostController::class ,'update'])->name('update');
 Route::POST('/delete/{id}', [PostController::class ,'destroy'])->name('delete');
 Route::POST('/comment/{id}', [ActionController::class ,'comment'])->name('comment');
 Route::POST('/like/{id}', [ActionController::class ,'like'])->name('like');
-
 Route::get('/profile/{username}',[ProfileController::class ,'index'])->name('profile');
 Route::get('/profile/edit/{id}',[ProfileController::class ,'edit'])->name('edit-profile');
 Route::POST('/profile/edit/{id}',[ProfileController::class ,'update'])->name('update-profile');
+});
