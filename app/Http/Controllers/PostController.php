@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
-{
+{ 
     public function index(){
-        $post = Post::all();
-        return view('frontend.home',compact('post'));
+        $post = Post::all()->sortBy('created_at')->sortDesc();
+        return view('frontend.home',['post'=>$post]);
     }
     public function show($id){
         $post = Post::with('user.profile')->find($id);

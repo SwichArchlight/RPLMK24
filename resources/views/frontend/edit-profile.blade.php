@@ -24,7 +24,7 @@
                     </div>
                   <div class="col-12">
                     <label for="judul"><h6>Deskripsi Profile</h6></label>
-                    <input type="text" class="form-control mb-3" name="deskripsi" placeholder="Deskripsi" >      
+                    <input type="text" class="form-control mb-3" name="deskripsi" placeholder="Deskripsi" value="{{ $profile->description }}">      
                   </div>
                 </div>
                 <div class="col-12">
